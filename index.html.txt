@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Pacman AI Game</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<h1>Pacman AI Game</h1>
+
+<canvas id="gameCanvas" width="600" height="600"></canvas>
+
+<script src="game.js"></script>
+
+</body>
+</html>

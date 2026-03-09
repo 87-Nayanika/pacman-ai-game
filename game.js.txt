@@ -1,0 +1,62 @@
+const canvas = document.getElementById("gameCanvas")
+const ctx = canvas.getContext("2d")
+
+let gridSize = 30
+
+let pacman = {x:1,y:1}
+let ghost = {x:10,y:10}
+
+document.addEventListener("keydown",movePacman)
+
+function movePacman(e){
+
+if(e.key=="ArrowUp") pacman.y--
+if(e.key=="ArrowDown") pacman.y++
+if(e.key=="ArrowLeft") pacman.x--
+if(e.key=="ArrowRight") pacman.x++
+
+}
+
+function ghostAI(){
+
+if(ghost.x < pacman.x) ghost.x++
+else if(ghost.x > pacman.x) ghost.x--
+
+if(ghost.y < pacman.y) ghost.y++
+else if(ghost.y > pacman.y) ghost.y--
+
+}
+
+function draw(){
+
+ctx.clearRect(0,0,600,600)
+
+ctx.fillStyle="yellow"
+ctx.beginPath()
+ctx.arc(pacman.x*gridSize,pacman.y*gridSize,10,0,Math.PI*2)
+ctx.fill()
+
+ctx.fillStyle="red"
+ctx.beginPath()
+ctx.arc(ghost.x*gridSize,ghost.y*gridSize,10,0,Math.PI*2)
+ctx.fill()
+
+}
+
+function gameLoop(){
+
+ghostAI()
+draw()
+
+if(pacman.x==ghost.x && pacman.y==ghost.y){
+
+alert("Game Over")
+
+pacman={x:1,y:1}
+ghost={x:10,y:10}
+
+}
+
+}
+
+setInterval(gameLoop,300)
